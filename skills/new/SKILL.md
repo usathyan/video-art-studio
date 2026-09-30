@@ -1,20 +1,17 @@
 ---
 name: new
-description: Start a new video piece — asks a few friendly questions, writes the brief, and hands off to the right workflow (explainer, photo story, or generative loop).
-argument-hint: "[idea or path to photos]"
+description: Start a new video piece — asks a few friendly questions and hands off to the right workflow (cinematic film from a folder, narrated explainer, photo story, or generative loop).
+argument-hint: "[idea or path to a folder]"
 ---
 
 # New piece
 
 The user's idea (may be empty): $ARGUMENTS
 
-1. If the idea is empty, ask what they want to make. Otherwise infer as much as you can.
-2. Ask the remaining questions in ONE message with AskUserQuestion (max 4):
-   - **Kind:** story/explainer with narration · my photos brought to life · abstract generative loop
-   - **Shape:** 16:9 (YouTube/web) · 9:16 (Reels/TikTok) · 4:5 (Instagram) · 1:1
-   - **Length:** 15s · 30s · 60s · longer
-   - **Look / budget:** free only · up to ~$5 of AI motion · up to ~$20
-3. Make `projects/<short-slug>/`, fill `brief.md` from `${CLAUDE_PLUGIN_ROOT}/templates/brief.md`
-   with their answers plus a proposed style line, and show it to them in a few lines.
-4. Hand off: narration → `video-art:video-director`; their photos → `video-art:photo-motion`;
+1. If they gave a folder of photos/videos/text (or want "a film/trailer/reel of my trip/event"),
+   hand off to `video-art:film` with that folder — it analyses the material and runs the wizard.
+2. Otherwise ask what they want to make (one AskUserQuestion, max 4 questions: kind, shape, length,
+   budget), write `projects/<slug>/brief.md` from `${CLAUDE_PLUGIN_ROOT}/templates/brief.md`, and
+   hand off: cinematic film from photos → `video-art:film`; narrated explainer →
+   `video-art:video-director`; a gentle photo story / living photos → `video-art:photo-motion`;
    abstract → `video-art:generative-art`.

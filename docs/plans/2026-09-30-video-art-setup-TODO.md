@@ -15,3 +15,4 @@
 - [ ] Fresh-machine install test via `install.sh`
 - [ ] First real piece: 60s printing-press explainer (maxescu brief) → compare against the reference
 - [ ] First photo piece: living-photo loop from user's own photos (one paid Seedance shot)
+- [ ] Showcase film "Slowing Time" (Japan trip) — progress tracked in projects/japan-trip/PLAN.md

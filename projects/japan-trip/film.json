@@ -1,0 +1,57 @@
+{
+  "title": "Slowing Time",
+  "subtitle": "Ten days in Japan",
+  "slug": "slowing-time",
+  "aspect": "16:9",
+  "style": "cinematic-warm",
+  "media": "work/photos",
+  "loudness": -14,
+  "score": {
+    "file": "work/cine/score-raw.mp3",
+    "prompt": "Cinematic score for a one-minute travel film about a father's last days in Japan with his son. Opens very quietly with solo koto and a soft piano motif; builds with taiko and light modern percussion into an energetic, joyful peak around 20 seconds; falls to near-silence with airy shakuhachi and wind at 28 seconds; swells with bright pulsing synths and strings at 40 seconds; resolves on the tender piano motif with warm strings, ending softly. Emotional, polished, trailer-quality, instrumental.",
+    "seconds": 64
+  },
+  "voice": {
+    "voice": "Charon",
+    "style": "close-mic cinematic voiceover of a father remembering a trip with his son; quiet, intimate, unhurried, warm, a little emotional",
+    "subtitles": true,
+    "lines": [
+      {"text": "In Japan, people take time.", "shot": 0, "offset": 1.4},
+      {"text": "These were the last few days of Ajay under my wing.", "shot": 5, "offset": 0.45},
+      {"text": "You want those days to go slow. Japan obliged.", "shot": 6, "offset": 0.95},
+      {"text": "Then the real goodbye, at Tokyo Station.", "shot": 8, "offset": 1.3},
+      {"text": "Mata kimasu. I’ll be back.", "shot": "end", "offset": 1.0}
+    ]
+  },
+  "shots": [
+    {"id": "torii", "photo": "05-06.jpg", "band": [0.325, 0.925], "model": "cinematic", "duration": 8,
+     "prompt": "Slow, steady cinematic dolly forward into a tunnel of vermilion torii gates at Fushimi Inari in the early morning. Keep the gates, kanji and colours exactly as in the image. No people, no text.",
+     "clip": "work/cine/shot1-torii.mp4", "beats": 16, "in": 0, "speed": 0.42},
+    {"id": "crossing", "photo": "01-09.jpg", "anchor": [0.5, 0.6], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "High-angle locked-off night shot over a quiet Tokyo crossing, black and white; pedestrians walk slowly.",
+     "clip": "work/cine/shot2-crossing.mp4", "beats": 8, "in": 0.8, "place": ["TOKYO", "東京"]},
+    {"id": "cats", "photo": "03-01.jpg", "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "Slow lateral dolly along rows of white maneki-neko figurines at Gotokuji; the figurines do not move.",
+     "clip": "work/cine/shot3-cats.mp4", "beats": 8, "in": 0.6, "place": ["TOKYO", "東京"]},
+    {"id": "samba", "photo": "03-19.jpg", "anchor": [0.5, 0.45], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "A samba dancer in a feathered headdress dances down a Tokyo street parade; energetic tracking shot.",
+     "clip": "work/cine/shot4-samba.mp4", "beats": 12, "in": 0.2},
+    {"id": "osaka", "photo": "08-01.jpg", "anchor": [0.45, 0.5], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "Osaka Shinsekai at night, neon signs and Tsutenkaku tower; slow crane shot rising.",
+     "clip": "work/cine/shot8-osaka.mp4", "beats": 10, "in": 0.6, "place": ["OSAKA", "大阪"]},
+    {"id": "shinkansen", "photo": "04-05.jpg", "band": [0.2625, 0.6875], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "View from a Shinkansen window: rice fields and villages rush past, fence motion-blurred, mountains glide slowly.",
+     "clip": "work/cine/shot5-shinkansen.mp4", "beats": 12, "in": 0.1},
+    {"id": "bamboo", "photo": "07-07.jpg", "band": [0.1125, 0.675], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "Slow crane rising through a bamboo grove; stalks sway, a red maple branch trembles.",
+     "clip": "work/cine/shot6-bamboo.mp4", "beats": 16, "in": 0, "speed": 0.787, "place": ["KYOTO", "京都"]},
+    {"id": "canal", "photo": "05-15.jpg", "band": [0.1875, 0.675], "model": "google/veo-3.1-fast", "duration": 6,
+     "prompt": "Night at the Shirakawa canal in Gion; golden lamplight shimmers on flowing water; very slow push-in.",
+     "clip": "work/cine/shot7-canal.mp4", "beats": 16, "in": 0, "speed": 0.787, "place": ["KYOTO", "京都"]},
+    {"id": "goodbye", "photo": "09-03.jpg", "band": [0.35, 0.8125], "model": "cinematic", "duration": 8,
+     "prompt": "A father and his son stand close smiling at the camera in Akihabara; they stay almost still while the crowd flows past; very slow push-in. Keep both faces exactly as in the photo.",
+     "clip": "work/cine/shot9-goodbye.mp4", "beats": 20, "in": 0, "speed": 0.84, "place": ["TOKYO", "東京"]}
+  ],
+  "transitions": [{"type": "flash", "before": 4}, {"type": "dip", "before": 8}],
+  "end": {"text": "また来ます", "sub": "I’ll be back.", "beats": 16}
+}

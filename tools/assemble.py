@@ -11,7 +11,8 @@ edit.json (paths relative to the json file):
     {"src": "out/hf-title.mp4", "dur": 3.0, "xfade": 0.6}         # xfade = crossfade INTO this shot
   ],
   "narration": "gen/vo.wav",
-  "music": "gen/music.mp3", "music_db": -16
+  "music": "gen/music.mp3", "music_db": -16,
+  "lufs": -16                                                    # optional loudness target
 }
 
 Shot audio is always dropped (model-generated audio clashes with narration).
@@ -113,8 +114,14 @@ def build(edit: dict, base: Path, out: Path) -> None:
         elif edit.get("music"):
             a_filter.append("[mus]anull[aout]")
 
-        graph = ";".join(chain + a_filter) or "[0:v]null[v0]"
-        vout = f"[{last}]" if chain else "[v0]"
+        if not chain:  # single shot: still needs a labelled video output
+            chain = ["[0:v]null[v0]"]
+            last = "v0"
+        if a_filter and edit.get("lufs"):  # final loudness normalisation (web ≈ -16, YouTube -14)
+            a_filter[-1] = a_filter[-1].replace("[aout]", "[pre]")
+            a_filter.append(f"[pre]loudnorm=I={edit['lufs']}:TP=-1.5:LRA=11,aresample=48000[aout]")
+        graph = ";".join(chain + a_filter)
+        vout = f"[{last}]"
         maps = ["-map", vout] + (["-map", "[aout]"] if a_filter else [])
         out.parent.mkdir(parents=True, exist_ok=True)
         ff(

@@ -16,3 +16,16 @@ def test_ass_groups_words_and_karaoke_timing():
     lines = [ln for ln in ass.splitlines() if ln.startswith("Dialogue")]
     assert len(lines) == 3
     assert "{\\kf40}w0" in lines[0]
+
+
+def test_align_keeps_timing_and_fixes_spelling():
+    from captions import align_to_script, script_words
+
+    heard = [
+        {"word": w, "start": i, "end": i + 0.5}
+        for i, w in enumerate(["to", "Godokuji,", "the", "white", "cat", "temple"])
+    ]
+    script = script_words("# title\nstyle: calm\nto Gotokuji, the white cat temple.")
+    out = align_to_script(heard, script)
+    assert [w["word"] for w in out] == ["to", "Gotokuji,", "the", "white", "cat", "temple."]
+    assert out[1]["start"] == 1

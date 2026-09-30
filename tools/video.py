@@ -26,12 +26,27 @@ _SIZES = {"480p": (854, 480), "720p": (1280, 720), "1080p": (1920, 1080), "4k": 
 _TOKEN_FPS = 24
 
 
-def estimate(model: str, duration: int, resolution: str, audio: bool) -> tuple[float | None, str]:
-    """(usd, explanation) from OpenRouter's live pricing table. usd is None if unpriceable."""
+def model_info(model: str) -> dict:
     r = check(httpx.get(f"{API}/videos/models", headers=_auth(), timeout=30)).json()
     m = next((x for x in r["data"] if x["id"] == model), None)
     if not m:
         raise SystemExit(f"unknown video model {model}")
+    return m
+
+
+def validate(m: dict, duration: int, resolution: str, aspect: str) -> None:
+    """Fail before spending if the model doesn't offer these settings."""
+    for name, val, allowed in (
+        ("resolution", resolution, m.get("supported_resolutions")),
+        ("aspect ratio", aspect, m.get("supported_aspect_ratios")),
+        ("duration", duration, m.get("supported_durations")),
+    ):
+        if allowed and val not in allowed:
+            raise SystemExit(f"{m['id']} does not support {name} {val!r}; choose from {allowed}")
+
+
+def estimate(m: dict, duration: int, resolution: str, audio: bool) -> tuple[float | None, str]:
+    """(usd, explanation) from OpenRouter's live pricing table. usd is None if unpriceable."""
     p = m["pricing_skus"]
     aud = "with_audio" if audio else "without_audio"
     res = resolution.lower()
@@ -115,7 +130,7 @@ def main() -> None:
     ap.add_argument("--last", type=Path)
     ap.add_argument("--ref", action="append", type=Path, default=[])
     ap.add_argument("--duration", type=int, default=5)
-    ap.add_argument("--resolution", default="1080p")
+    ap.add_argument("--resolution", default="720p")
     ap.add_argument("--aspect", default="16:9")
     ap.add_argument(
         "--audio", action="store_true", help="let the model generate audio (usually no)"
@@ -126,7 +141,9 @@ def main() -> None:
     )
     a = ap.parse_args()
     a.model = CONFIG["video"].get(a.model, a.model)
-    usd, why = estimate(a.model, a.duration, a.resolution, a.audio)
+    info = model_info(a.model)
+    validate(info, a.duration, a.resolution, a.aspect)
+    usd, why = estimate(info, a.duration, a.resolution, a.audio)
     shown = f"~${usd:.2f}" if usd is not None else "UNKNOWN"
     print(f"{a.model}  {a.duration}s {a.resolution} {a.aspect}  est {shown}  ({why})")
     if not a.confirm:

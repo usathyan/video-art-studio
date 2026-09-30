@@ -5,6 +5,9 @@ description: Use when the user wants to bring their own photographs or artwork t
 
 # Photo motion — the artist's own images, moving
 
+For a stylish, beat-cut *cinematic film* from a folder (Higgsfield-style), use `video-art:film`
+instead; this skill is for gentle photo stories, living photos and portfolio reels.
+
 The user's photographs are the art. Every technique here must **preserve the original image**
 (composition, color, subject) and add motion around it. Never "improve" or restyle a photo unless asked.
 
@@ -23,8 +26,8 @@ narration yes/no, and budget for AI motion (can be $0).
 | **Slow move** (Ken Burns push/pull/pan) | free | `edit.json` shot with `"move": "in"|"out"` → `va-assemble` |
 | **Parallax 2.5D** (foreground slides over background) | free | HyperFrames: cut subject with `npx hyperframes remove-background`, layer subject + background, animate at different speeds (`/hyperframes-keyframes`) |
 | **Typographic story** (title, caption, location, date) | free | HyperFrames motion graphics over the photo (`/motion-graphics`) |
-| **Living photo / cinemagraph** (water flows, hair moves, clouds drift) | ~$0.15 (Veo Lite 720p) – $2.60 (Seedance 2.5 1080p) per 5s | `va-video "<only the motion, e.g. 'gentle ripples on the water, everything else still, locked-off camera'>" --first photos/x.jpg --last photos/x.jpg --resolution 720p` — same first & last frame = seamless loop; test on `--model cheap` first |
-| **Camera move into the scene** | ~$1–2.60 per 5s | `va-video --first photos/x.jpg --model cinematic` with a precise camera instruction |
+| **Living photo / cinemagraph** (water flows, hair moves, clouds drift) | ~$0.15 (Veo Lite) – $1.16 (Seedance 2.5) per 5s at 720p | `va-video "<only the motion, e.g. 'gentle ripples on the water, everything else still, locked-off camera'>" --first photos/x.jpg --last photos/x.jpg --resolution 720p` — same first & last frame = seamless loop; test on `--model cheap` first |
+| **Camera move into the scene** | ~$1 per 5s (Veo 3.1, 1080p) | `va-video --first photos/x.jpg --model cinematic` with a precise camera instruction |
 
 Default to free treatments; propose AI motion only for 1–3 hero images, with the total cost.
 Always dry-run `va-video` first and state the estimate before `--confirm`.

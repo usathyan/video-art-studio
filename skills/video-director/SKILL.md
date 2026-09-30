@@ -47,7 +47,8 @@ shots, tell the user the total, then re-run with `--confirm`. For a seamless loo
 shot `--last` = the opening keyframe.
 
 ## 7. Music
-`va-music "<mood, instrumentation, bpm>" --seconds <len>`. Instrumental only.
+`va-music "<mood, instrumentation, bpm>" --seconds <len>` (Lyria via OpenRouter: $0.04 ≤30s, $0.08 longer;
+`--provider elevenlabs` if the user has a paid ElevenLabs plan). Instrumental only.
 
 ## 8. Assemble → captions → critic
 `edit.json` → `va-assemble` → `va-captions` → `va-critic --script script.md`.

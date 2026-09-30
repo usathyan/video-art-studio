@@ -17,7 +17,8 @@ Explain each install in one short sentence before running it.
    - **Easiest:** `/plugin` → Video Art Studio → Configure, paste keys, restart Claude Code.
    - **Or:** create `~/.config/video-art/.env` with lines like `OPENROUTER_API_KEY=...`
      (write the file for them if they paste a key; never echo keys back into chat).
-   Only OpenRouter is essential for AI images; Gemini gives narration; ElevenLabs gives music.
+   Only OpenRouter is essential: it covers AI images, AI video and music (Lyria). Gemini gives narration.
+   ElevenLabs is an optional alternative music engine and needs a paid ElevenLabs plan.
    Nothing is required for photo slideshows with free treatments.
 4. Motion-graphics engine (per project folder):
    `bunx skills add heygen-com/hyperframes -s '*' -a claude-code --copy -y`

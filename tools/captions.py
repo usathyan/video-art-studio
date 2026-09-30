@@ -1,6 +1,11 @@
 """Word-level captions: whisper.cpp → ASS (word-highlight) → burned into video.
 
     uv run tools/captions.py in.mp4 -o out.mp4 [--words-per-line 6] [--no-burn]
+                             [--script script.md] [--audio narration.wav]
+
+--script  keep whisper's timings but show the script's exact words (fixes proper nouns
+          whisper mishears, e.g. "Gotokuji"). Lines starting with "#" or "key:" are ignored.
+--audio   transcribe this clean narration stem instead of the video's final mix.
 
 Also writes <in>.words.json (word, start, end) — the critic reuses it.
 """
@@ -9,9 +14,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import tempfile
 import urllib.request
+from difflib import SequenceMatcher
 from pathlib import Path
 
 from common import CONFIG, ffmpeg_with_libass
@@ -84,6 +91,41 @@ def transcribe(media: Path) -> list[dict]:
     return words
 
 
+def script_words(text: str) -> list[str]:
+    lines = [
+        ln for ln in text.splitlines() if ln.strip() and not re.match(r"\s*(#|[A-Za-z_]+:\s)", ln)
+    ]
+    return " ".join(lines).replace("*", "").split()
+
+
+def _norm(w: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", w.lower())
+
+
+def align_to_script(words: list[dict], script: list[str]) -> list[dict]:
+    """Relabel whisper words with the script's words, keeping whisper's timing."""
+    heard = [_norm(w["word"]) for w in words]
+    wanted = [_norm(w) for w in script]
+    out: list[dict] = []
+    for op, i1, i2, j1, j2 in SequenceMatcher(None, heard, wanted, autojunk=False).get_opcodes():
+        if op == "equal" or (op == "replace" and i2 - i1 == j2 - j1):
+            out += [{**words[i], "word": script[j]} for i, j in zip(range(i1, i2), range(j1, j2))]
+        elif op == "replace":  # different word counts: spread script words over the heard span
+            t0, t1 = words[i1]["start"], words[i2 - 1]["end"]
+            step = (t1 - t0) / (j2 - j1)
+            out += [
+                {"word": script[j], "start": t0 + k * step, "end": t0 + (k + 1) * step}
+                for k, j in enumerate(range(j1, j2))
+            ]
+        elif op == "insert" and out:  # script words whisper missed: squeeze after previous word
+            prev = out[-1]
+            out += [
+                {"word": script[j], "start": prev["end"], "end": prev["end"]} for j in range(j1, j2)
+            ]
+        # "delete": whisper heard something not in the script (breath, filler) → drop it
+    return out
+
+
 def _ts(t: float) -> str:
     h, rem = divmod(t, 3600)
     m, s = divmod(rem, 60)
@@ -142,9 +184,13 @@ def main() -> None:
     ap.add_argument("-o", "--out", type=Path)
     ap.add_argument("--words-per-line", type=int, default=6)
     ap.add_argument("--no-burn", action="store_true")
+    ap.add_argument("--script", type=Path, help="text whose exact words the captions should show")
+    ap.add_argument("--audio", type=Path, help="clean narration stem to transcribe")
     a = ap.parse_args()
 
-    words = transcribe(a.video)
+    words = transcribe(a.audio or a.video)
+    if a.script:
+        words = align_to_script(words, script_words(a.script.read_text()))
     a.video.with_suffix(".words.json").write_text(json.dumps(words, indent=1))
     ass = a.video.with_suffix(".ass")
     ass.write_text(to_ass(words, a.words_per_line, *probe_size(a.video)))

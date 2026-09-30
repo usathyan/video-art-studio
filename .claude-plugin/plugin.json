@@ -3,23 +3,27 @@
   "name": "video-art",
   "displayName": "Video Art Studio",
   "version": "0.2.0",
-  "description": "Turn ideas and photographs into finished videos with Claude Code: narrated explainers, animated photo stories, and generative loops — scripted, voiced, scored, captioned and self-reviewed.",
+  "description": "Turn a folder of photos, clips and notes into a finished film with Claude Code: a wizard that analyses your material, asks about length, theme, style and voice, then animates your photos, scores, beat-cuts, grades, titles and mixes. Also narrated explainers, photo stories and generative loops.",
   "author": {
     "name": "Umesh Bhatt",
     "email": "umesh@8thcross.com"
   },
   "license": "MIT",
   "keywords": [
-    "video",
     "art",
+    "cinematic",
+    "film",
     "generative",
-    "photography",
-    "motion-graphics",
+    "higgsfield",
     "hyperframes",
+    "motion-graphics",
+    "photography",
+    "seedance",
+    "travel",
     "tts",
     "veo",
-    "seedance",
-    "higgsfield"
+    "video",
+    "wizard"
   ],
   "userConfig": {
     "openrouter_api_key": {
@@ -36,8 +40,8 @@
     },
     "elevenlabs_api_key": {
       "type": "string",
-      "title": "ElevenLabs API key (optional)",
-      "description": "For background music. Leave blank to skip music or if ELEVEN_API / ELEVENLABS_API_KEY is already set.",
+      "title": "ElevenLabs API key (optional, paid plan)",
+      "description": "Alternative music engine (music API needs a paid ElevenLabs plan). Music works without it via Lyria on OpenRouter. Leave blank if unused or already set as ELEVEN_API / ELEVENLABS_API_KEY.",
       "sensitive": true
     }
   },

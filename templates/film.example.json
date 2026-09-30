@@ -1,0 +1,197 @@
+{
+ "title": "Slowing Time",
+ "subtitle": "Ten days in Japan",
+ "aspect": "16:9",
+ "style": "cinematic-warm",
+ "media": "work/media",
+ "loudness": -14,
+ "score": {
+  "prompt": "Cinematic score for a one-minute travel film about a father's last days in Japan. Opens very quietly with solo koto and a soft piano motif; builds with taiko and light modern percussion into an energetic, joyful peak around 20 seconds; falls to near-silence with airy shakuhachi and wind at 28 seconds; swells with bright pulsing synths and strings at 40 seconds; resolves on the tender piano motif with warm strings, ending softly. Emotional, polished, trailer-quality, instrumental.",
+  "seconds": 64
+ },
+ "voice": {
+  "voice": "Charon",
+  "style": "close-mic cinematic voiceover of a father remembering a trip with his son; quiet, intimate, unhurried, warm, a little emotional",
+  "subtitles": true,
+  "lines": [
+   {
+    "text": "In Japan, people take time.",
+    "shot": 0,
+    "offset": 1.4
+   },
+   {
+    "text": "These were the last few days of the trip.",
+    "shot": 5,
+    "offset": 0.45
+   },
+   {
+    "text": "You want those days to go slow.",
+    "shot": 6,
+    "offset": 0.95
+   },
+   {
+    "text": "I'll be back.",
+    "shot": "end",
+    "offset": 1.0
+   }
+  ]
+ },
+ "shots": [
+  {
+   "id": "torii",
+   "photo": "torii.jpg",
+   "band": [
+    0.325,
+    0.925
+   ],
+   "model": "cinematic",
+   "duration": 8,
+   "prompt": "Slow, steady cinematic dolly forward into a tunnel of vermilion torii gates at Fushimi Inari in the early morning. Keep the gates, kanji and colours exactly as in the image. No people, no text.",
+   "beats": 16,
+   "in": 0,
+   "speed": 0.42
+  },
+  {
+   "id": "crossing",
+   "photo": "crossing.jpg",
+   "anchor": [
+    0.5,
+    0.6
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "High-angle locked-off night shot over a quiet Tokyo crossing, black and white; pedestrians walk slowly.",
+   "beats": 8,
+   "in": 0.8,
+   "place": [
+    "TOKYO",
+    "東京"
+   ]
+  },
+  {
+   "id": "cats",
+   "photo": "cats.jpg",
+   "model": "fast",
+   "duration": 6,
+   "prompt": "Slow lateral dolly along rows of white maneki-neko figurines at Gotokuji; the figurines do not move.",
+   "beats": 8,
+   "in": 0.6,
+   "place": [
+    "TOKYO",
+    "東京"
+   ]
+  },
+  {
+   "id": "samba",
+   "photo": "samba.jpg",
+   "anchor": [
+    0.5,
+    0.45
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "A samba dancer in a feathered headdress dances down a Tokyo street parade; energetic tracking shot.",
+   "beats": 12,
+   "in": 0.2
+  },
+  {
+   "id": "osaka",
+   "photo": "osaka.jpg",
+   "anchor": [
+    0.45,
+    0.5
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "Osaka Shinsekai at night, neon signs and Tsutenkaku tower; slow crane shot rising.",
+   "beats": 10,
+   "in": 0.6,
+   "place": [
+    "OSAKA",
+    "大阪"
+   ]
+  },
+  {
+   "id": "shinkansen",
+   "photo": "shinkansen.jpg",
+   "band": [
+    0.2625,
+    0.6875
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "View from a Shinkansen window: rice fields and villages rush past, fence motion-blurred, mountains glide slowly.",
+   "beats": 12,
+   "in": 0.1
+  },
+  {
+   "id": "bamboo",
+   "photo": "bamboo.jpg",
+   "band": [
+    0.1125,
+    0.675
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "Slow crane rising through a bamboo grove; stalks sway, a red maple branch trembles.",
+   "beats": 16,
+   "in": 0,
+   "speed": 0.787,
+   "place": [
+    "KYOTO",
+    "京都"
+   ]
+  },
+  {
+   "id": "canal",
+   "photo": "canal.jpg",
+   "band": [
+    0.1875,
+    0.675
+   ],
+   "model": "fast",
+   "duration": 6,
+   "prompt": "Night at the Shirakawa canal in Gion; golden lamplight shimmers on flowing water; very slow push-in.",
+   "beats": 16,
+   "in": 0,
+   "speed": 0.787,
+   "place": [
+    "KYOTO",
+    "京都"
+   ]
+  },
+  {
+   "id": "goodbye",
+   "photo": "goodbye.jpg",
+   "band": [
+    0.35,
+    0.8125
+   ],
+   "model": "cinematic",
+   "duration": 8,
+   "prompt": "Two people stand close smiling at the camera on a busy street; they stay almost still while the crowd flows past; very slow push-in. Keep both faces exactly as in the photo.",
+   "beats": 20,
+   "in": 0,
+   "speed": 0.84,
+   "place": [
+    "TOKYO",
+    "東京"
+   ]
+  }
+ ],
+ "transitions": [
+  {
+   "type": "flash",
+   "before": 4
+  },
+  {
+   "type": "dip",
+   "before": 8
+  }
+ ],
+ "end": {
+  "text": "また来ます",
+  "sub": "I’ll be back.",
+  "beats": 16
+ }
+}

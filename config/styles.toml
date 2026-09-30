@@ -1,0 +1,69 @@
+# Videography style presets for `va-film`. Each preset = one look applied to every shot.
+# grade: an ffmpeg filter chain (applied after scaling, before grain). letterbox: image aspect
+# inside a 16:9 frame (0 = none). Fonts are OFL families downloaded on first use (see FONTS).
+
+[cinematic-warm]            # the "Slowing Time" look: anamorphic, warm highlights / cool shadows
+label = "Cinematic warm — anamorphic letterbox, filmic grade, elegant serif titles"
+grade = "curves=all='0/0.035 0.25/0.21 0.5/0.5 0.78/0.81 1/0.965',colorbalance=rs=-0.035:gs=-0.005:bs=0.045:rh=0.045:gh=0.015:bh=-0.035,eq=saturation=0.9:contrast=1.03,vignette=angle=PI/5.5"
+grain = 5
+letterbox = 2.39
+fps = 24
+title_font = "Shippori Mincho"
+text_font = "EB Garamond Italic"
+title_case = "upper"
+title_tracking = "0.42em"
+flash = "rgba(255,190,110,0.95)"
+
+[documentary-clean]         # honest colour, full frame, modern sans
+label = "Documentary clean — natural colour, full frame, modern sans-serif"
+grade = "eq=contrast=1.04:saturation=1.02,unsharp=5:5:0.3"
+grain = 2
+letterbox = 0
+fps = 25
+title_font = "Inter"
+text_font = "Inter"
+title_case = "none"
+title_tracking = "0.02em"
+flash = "rgba(255,255,255,0.9)"
+
+[vintage-film]              # faded 70s stock: lifted blacks, warm cast, heavy grain
+label = "Vintage film — faded warm stock, heavy grain, classic serif"
+grade = "curves=all='0/0.09 0.5/0.52 1/0.92',colorbalance=rs=0.06:gs=0.02:bs=-0.05:rm=0.04:bm=-0.03,eq=saturation=0.78,vignette=angle=PI/4.5"
+grain = 12
+letterbox = 1.85
+fps = 24
+title_font = "EB Garamond Italic"
+text_font = "EB Garamond Italic"
+title_case = "none"
+title_tracking = "0.06em"
+flash = "rgba(255,170,90,0.95)"
+
+[neon-night]                # city nights: deep blacks, cyan/magenta split, punchy
+label = "Neon night — deep contrast, cyan/magenta split-tone, bold grotesk titles"
+grade = "curves=all='0/0 0.3/0.22 0.7/0.78 1/1',colorbalance=rs=-0.05:bs=0.08:rh=0.06:bh=0.04,eq=saturation=1.15:contrast=1.06,vignette=angle=PI/5"
+grain = 4
+letterbox = 2.0
+fps = 24
+title_font = "Space Grotesk"
+text_font = "Space Grotesk"
+title_case = "upper"
+title_tracking = "0.3em"
+flash = "rgba(255,60,200,0.9)"
+
+[monochrome]                # black & white, silver contrast
+label = "Monochrome — black & white, rich contrast, timeless"
+grade = "hue=s=0,curves=all='0/0.02 0.25/0.18 0.75/0.84 1/0.98',eq=contrast=1.08,vignette=angle=PI/5"
+grain = 7
+letterbox = 2.39
+fps = 24
+title_font = "Shippori Mincho"
+text_font = "EB Garamond Italic"
+title_case = "upper"
+title_tracking = "0.42em"
+flash = "rgba(255,255,255,0.85)"
+
+[FONTS]                     # family → files in github.com/google/fonts (all OFL)
+"Shippori Mincho" = "ofl/shipporimincho/ShipporiMincho-Medium.ttf"
+"EB Garamond Italic" = "ofl/ebgaramond/EBGaramond-Italic%5Bwght%5D.ttf"
+"Inter" = "ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf"
+"Space Grotesk" = "ofl/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf"

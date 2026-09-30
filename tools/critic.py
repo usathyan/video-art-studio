@@ -16,7 +16,7 @@ import subprocess
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from captions import transcribe
+from captions import script_words, transcribe
 
 
 def run(*cmd: str) -> str:
@@ -110,7 +110,7 @@ def measure(video: Path, script: Path | None, every: float, outdir: Path) -> dic
     if script and script.exists():
         words = transcribe(video)
         heard = " ".join(w["word"] for w in words).lower()
-        wanted = re.sub(r"<[^>]+>|[#*_>\[\]]", " ", script.read_text()).lower()
+        wanted = re.sub(r"<[^>]+>", " ", " ".join(script_words(script.read_text()))).lower()
         norm = lambda s: re.sub(r"[^a-z0-9 ]", "", s).split()
         m["script_match"] = SequenceMatcher(None, norm(wanted), norm(heard)).ratio()
         m["speech_end"] = words[-1]["end"] if words else 0.0

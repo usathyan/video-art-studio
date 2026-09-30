@@ -51,3 +51,11 @@ renders
 # third-party HyperFrames skills (reinstall: bunx skills add heygen-com/hyperframes -s '*' -a claude-code --copy -y)
 .claude/skills/
 projects/_*/
+
+# personal source material and working files for pieces — never committed
+projects/*/source/
+projects/*/work/
+projects/*/hf/
+projects/*/film/
+# showcase media is committed deliberately (small trailer + stills only)
+!docs/showcase/**

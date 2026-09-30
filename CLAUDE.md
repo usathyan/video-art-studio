@@ -5,10 +5,12 @@ not here — this file is only for working on the plugin itself.
 
 ## Layout
 - `.claude-plugin/plugin.json` manifest (+ `userConfig` API keys) · `marketplace.json`
-- `skills/{video-director,photo-motion,generative-art,new,setup}/SKILL.md`
+- `skills/{film,video-director,photo-motion,generative-art,new,setup}/SKILL.md` — `film` is the folder→film wizard
 - `bin/va-*` → `bin/_va_run` → `tools/<name>.py` via `uv run` (venv in `~/.cache/video-art/venv`)
 - `hooks/export-keys.sh` — SessionStart: userConfig keys → `CLAUDE_ENV_FILE`
 - `config/models.toml` — the only place model IDs live (`make models` lists live IDs)
+- `config/styles.toml` — videography presets used by `va-film` (grade, grain, letterbox, fonts)
+- `templates/film.example.json` — full film spec; `projects/japan-trip/film.json` rebuilds the showcase
 - `.claude/skills/` — HyperFrames skills installed for *this* folder (third-party, git-ignored)
 - `projects/` — test pieces; `gen/` and `out/` are git-ignored
 
