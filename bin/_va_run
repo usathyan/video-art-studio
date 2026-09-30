@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Shared launcher: runs tools/<name>.py inside a uv-managed venv kept OUTSIDE the plugin dir
+# (the plugin dir is replaced on every update; the venv survives in ~/.cache).
+set -euo pipefail
+ROOT="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+TOOL="$1"; shift
+export UV_PROJECT_ENVIRONMENT="${VIDEO_ART_VENV:-$HOME/.cache/video-art/venv}"
+if ! command -v uv >/dev/null; then
+  echo "video-art: 'uv' is not installed. Run: brew install uv   (or /video-art:setup)" >&2; exit 127
+fi
+exec uv run --quiet --project "$ROOT" python "$ROOT/tools/$TOOL.py" "$@"

@@ -1,0 +1,25 @@
+[project]
+name = "art"
+version = "0.1.0"
+description = "Claude Code video-art pipeline: explainers + generative pieces"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "google-genai>=1.40",
+    "pillow>=10",
+    "opentimelineio>=0.17",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["common", "image", "captions"]

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Checks everything the plugin needs and prints how to fix what's missing.
+ok(){ printf "  \033[32m✓\033[0m %s\n" "$1"; }
+bad(){ printf "  \033[31m✗\033[0m %s  →  %s\n" "$1" "$2"; FAIL=1; }
+FAIL=0
+echo "Tools"
+command -v uv >/dev/null && ok "uv" || bad "uv" "brew install uv"
+command -v ffmpeg >/dev/null && ok "ffmpeg" || bad "ffmpeg" "brew install ffmpeg"
+{ [ -x /opt/homebrew/opt/ffmpeg-full/bin/ffmpeg ] || [ -x /usr/local/opt/ffmpeg-full/bin/ffmpeg ] || [ -n "${FFMPEG_FULL:-}" ]; } \
+  && ok "ffmpeg-full (captions)" || bad "ffmpeg-full (needed to burn captions)" "brew install ffmpeg-full"
+command -v whisper-cli >/dev/null && ok "whisper-cpp" || bad "whisper-cpp (captions, critic)" "brew install whisper-cpp"
+command -v yt-dlp >/dev/null && ok "yt-dlp" || bad "yt-dlp (optional, CC clips)" "brew install yt-dlp"
+NODE_MAJOR=$(node -v 2>/dev/null | sed 's/v\([0-9]*\).*/\1/'); [ "${NODE_MAJOR:-0}" -ge 22 ] && ok "node $(node -v)" || bad "node >= 22 (HyperFrames)" "brew install node"
+{ [ -d "/Applications/Google Chrome.app" ] || command -v google-chrome >/dev/null; } && ok "Chrome (HyperFrames renderer)" || bad "Chrome" "install Google Chrome"
+echo "API keys (env, .env, or ~/.config/video-art/.env)"
+for pair in "OPENROUTER_API_KEY:images + AI video" "GEMINI_API_KEY|GOOGLE_API_KEY:narration" "ELEVEN_API|ELEVENLABS_API_KEY:music"; do
+  names=${pair%%:*}; what=${pair#*:}; found=""
+  for n in ${names//|/ }; do [ -n "${!n:-}" ] && found=$n; done
+  [ -z "$found" ] && for f in .env "$HOME/.config/video-art/.env"; do grep -qE "^(${names})=." "$f" 2>/dev/null && found="$f"; done
+  [ -n "$found" ] && ok "$what ($found)" || bad "$what" "set ${names%%|*} — see /video-art:setup"
+done
+echo "Project"
+[ -d .claude/skills/hyperframes ] && ok "HyperFrames skills in $(pwd)" || bad "HyperFrames skills" "bunx skills add heygen-com/hyperframes -s '*' -a claude-code --copy -y"
+exit $FAIL

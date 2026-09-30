@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "video-art",
+  "displayName": "Video Art Studio",
+  "version": "0.2.0",
+  "description": "Turn ideas and photographs into finished videos with Claude Code: narrated explainers, animated photo stories, and generative loops — scripted, voiced, scored, captioned and self-reviewed.",
+  "author": {
+    "name": "Umesh Bhatt",
+    "email": "umesh@8thcross.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "art",
+    "generative",
+    "photography",
+    "motion-graphics",
+    "hyperframes",
+    "tts",
+    "veo",
+    "seedance",
+    "higgsfield"
+  ],
+  "userConfig": {
+    "openrouter_api_key": {
+      "type": "string",
+      "title": "OpenRouter API key",
+      "description": "One key for image models (Gemini, GPT Image) and video models (Seedance, Veo, Kling). openrouter.ai/keys. Leave blank if OPENROUTER_API_KEY is already in your shell.",
+      "sensitive": true
+    },
+    "gemini_api_key": {
+      "type": "string",
+      "title": "Gemini API key",
+      "description": "For narration (Gemini TTS). aistudio.google.com/apikey. Leave blank if GEMINI_API_KEY is already set.",
+      "sensitive": true
+    },
+    "elevenlabs_api_key": {
+      "type": "string",
+      "title": "ElevenLabs API key (optional)",
+      "description": "For background music. Leave blank to skip music or if ELEVEN_API / ELEVENLABS_API_KEY is already set.",
+      "sensitive": true
+    }
+  },
+  "mcpServers": {
+    "higgsfield": {
+      "type": "http",
+      "url": "https://mcp.higgsfield.ai/mcp"
+    }
+  }
+}

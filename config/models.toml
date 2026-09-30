@@ -1,0 +1,24 @@
+# Single source of truth for model IDs. Verified against live APIs on 2026-09-30.
+# Re-list: `make models`
+
+[image]            # OpenRouter chat-completions with modalities=["image","text"]
+default = "google/gemini-3-pro-image"        # best text-free keyframes + ref consistency
+alt     = "openai/gpt-5.4-image-2"
+cheap   = "google/gemini-3.1-flash-image"
+
+[video]            # OpenRouter POST /api/v1/videos  (billed per second — see tools/video.py guard)
+default = "bytedance/seedance-2.5"           # best motion shots (per deedydas); 4–30s, first+last frame
+cinematic = "google/veo-3.1"                 # 4–8s, $0.20/s no-audio, $0.40/s with audio
+cheap   = "google/veo-3.1-lite"              # $0.03/s @720p no-audio — use for animatic motion tests
+kling   = "kwaivgi/kling-v3.0-std"
+
+[tts]              # Gemini API (google-genai interactions)
+model = "gemini-3.8-flash-tts"
+voice = "Charon"                             # informative, measured; try Kore / Puck / Zephyr
+style = "a warm university professor explaining to curious students; unhurried, varied pace, genuine wonder at key reveals"
+
+[music]            # ElevenLabs /v1/music
+model = "music_v2_5"
+
+[asr]              # whisper.cpp (brew install whisper-cpp); model auto-downloaded to ~/.cache/whisper
+model = "base.en"

@@ -1,0 +1,13 @@
+{
+  "name": "art",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "hyperframes": "^0.8.96"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

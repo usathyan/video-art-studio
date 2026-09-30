@@ -1,0 +1,17 @@
+{
+  "name": "video-art",
+  "owner": {
+    "name": "Umesh Bhatt",
+    "email": "umesh@8thcross.com"
+  },
+  "metadata": {
+    "description": "Video Art Studio: a Claude Code plugin for artists and photographers to make narrated explainers, living-photo stories and generative video loops."
+  },
+  "plugins": [
+    {
+      "name": "video-art",
+      "source": "./",
+      "description": "Video Art Studio \u2014 ideas and photographs into finished videos with Claude Code."
+    }
+  ]
+}
