@@ -13,6 +13,27 @@ trip photos and [the blog post it tells](https://8thcross.substack.com/p/slowing
 
 ---
 
+## Why a Claude Code plugin, not a website?
+
+**Your vision, not a template.** A video website gives you its presets and its look. Here you
+direct a creative collaborator. Claude studies your material, asks what you want to say, and
+builds the film with you. You can change any shot, line, grade or cut and it rebuilds. Every
+step is a file you own (`film.json`, the frames, the clips), so nothing is locked inside
+someone else's app.
+
+**The best models, on your budget.** The strongest image, video, voice and music models are paid
+models, and they change every few months. This plugin doesn't resell them or lock you to one.
+You bring your own keys, pay the providers directly at cost, and choose per shot:
+- Veo 3.1 for a hero shot, Veo 3.1 Fast for the rest.
+- A $0.15 test before a $1.60 take.
+- Nothing paid at all for a photo slideshow.
+
+Claude shows the estimate before anything is spent. Swapping in a new model is one line in
+`config/models.toml`. Your photos go only to the providers you choose, and only when you
+approve a generation. Everything else runs on your own computer.
+
+---
+
 ## What is it?
 
 Imagine a small film studio living inside your computer:
