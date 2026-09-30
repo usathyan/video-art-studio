@@ -9,7 +9,7 @@ and fixes what looks wrong.
 [![Slowing Time — a 60-second film made with Video Art Studio](docs/showcase/slowing-time-poster.jpg)](docs/showcase/slowing-time-60s.mp4)
 
 **▶ [Watch "Slowing Time" (63 s)](docs/showcase/slowing-time-60s.mp4)**: made from one folder of
-trip photos and a blog post, with the steps below. [How it was made ↓](#showcase-how-slowing-time-was-made)
+trip photos and [the blog post it tells](https://8thcross.substack.com/p/slowing-time), with the steps below. [How it was made ↓](#showcase-how-slowing-time-was-made)
 
 ---
 
@@ -175,7 +175,7 @@ fonts (open-licence fonts are downloaded on first use). Add your own.
 
 ![Six frames from Slowing Time](docs/showcase/slowing-time-frames.jpg)
 
-**The material:** a Substack post about a father taking his son to Japan for a year of university
+**The material:** [*Slowing Time*](https://8thcross.substack.com/p/slowing-time), a Substack post about a father taking his son to Japan for a year of university
 (10 days, Tokyo → Kyoto → Osaka), with 125 photos from a phone and a rented Fujifilm X100VI.
 
 **First attempt: a slideshow.** A 10:47 photo essay: every one of the 125 photos framed on paper,
