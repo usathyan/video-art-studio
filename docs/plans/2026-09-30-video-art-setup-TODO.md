@@ -6,7 +6,7 @@
 - [x] Tools: image, video (dry-run guard), tts, music, clips, assemble (+OTIO), captions, critic
 - [x] Skills: video-director, photo-motion, generative-art, new, setup
 - [x] Package as plugin: manifest, userConfig keys, SessionStart hook, bin/ wrappers, marketplace
-- [x] README (ELI5), docs/research.md, install.sh, LICENSE
+- [x] README (plain-language guide), docs/research.md, install.sh, LICENSE
 - [x] Smoke test: image + TTS + assemble + captions + critic (no video spend)
 - [ ] **User:** implement `judge()` pass/fail rules in tools/critic.py
 - [ ] **User:** replace ELEVEN_API in ~/.zshrc with the `sk_…` secret key; re-test `va-music`

@@ -13,7 +13,7 @@ trip photos and a blog post, with the steps below. [How it was made ↓](#showca
 
 ---
 
-## What is it? (the five-year-old version)
+## What is it?
 
 Imagine a small film studio living inside your computer:
 
@@ -179,8 +179,8 @@ fonts (open-licence fonts are downloaded on first use). Add your own.
 (10 days, Tokyo → Kyoto → Osaka), with 125 photos from a phone and a rented Fujifilm X100VI.
 
 **First attempt: a slideshow.** A 10:47 photo essay: every one of the 125 photos framed on paper,
-the whole post narrated. Well made, but it looked like a home video. That feedback shaped the
-wizard.
+the whole post narrated. It worked as a slideshow but not as a film, which is why the wizard
+now aims for fewer, moving, beat-cut shots.
 
 **Second attempt: the film (63 s).**
 - **Brief:** 60 s, 16:9, the `cinematic-warm` style, music-led with 5 of the author's own lines,
