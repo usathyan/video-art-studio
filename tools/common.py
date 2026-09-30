@@ -11,10 +11,14 @@ from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
 USER_DIR = Path.home() / ".config" / "video-art"
+KEYS_FILE = USER_DIR / ".env"
 
-# Keys: real env vars win, then ./.env in the working folder, then ~/.config/video-art/.env
-load_dotenv(Path.cwd() / ".env")
-load_dotenv(USER_DIR / ".env")
+# API keys live in ONE place: ~/.config/video-art/.env (works in the terminal, the desktop app
+# and IDEs alike). The file wins; shell variables only fill in keys the file doesn't set.
+load_dotenv(KEYS_FILE, override=True)
+for _name, _val in list(os.environ.items()):  # "KEY=   # note" parses as "# note": treat as empty
+    if _name.endswith(("_API_KEY", "_API")) and _val.strip().startswith("#"):
+        del os.environ[_name]
 
 # Models: plugin defaults, overridden per-project by ./.video-art/models.toml
 CONFIG = tomllib.loads((ROOT / "config" / "models.toml").read_text())
@@ -26,7 +30,7 @@ if _override.exists():
 _KEY_ALIASES = {
     "openrouter": ["OPENROUTER_API_KEY"],
     "gemini": ["GEMINI_API_KEY", "GOOGLE_API_KEY"],
-    "eleven": ["ELEVEN_API", "ELEVENLABS_API_KEY"],
+    "eleven": ["ELEVENLABS_API_KEY", "ELEVEN_API"],
 }
 
 
@@ -35,7 +39,8 @@ def key(service: str) -> str:
         if val := os.environ.get(name):
             return val
     sys.exit(
-        f"missing API key for {service}: set one of {_KEY_ALIASES[service]} (see .env.example)"
+        f"missing API key for {service}: add {_KEY_ALIASES[service][0]}=... to {KEYS_FILE} "
+        "(run `va-keys` to create and open it)"
     )
 
 

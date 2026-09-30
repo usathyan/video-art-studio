@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "video-art",
   "displayName": "Video Art Studio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Turn a folder of photos, clips and notes into a finished film with Claude Code: a wizard that analyses your material, asks about length, theme, style and voice, then animates your photos, scores, beat-cuts, grades, titles and mixes. Also narrated explainers, photo stories and generative loops.",
   "author": {
     "name": "Umesh Bhatt",
@@ -25,26 +25,6 @@
     "video",
     "wizard"
   ],
-  "userConfig": {
-    "openrouter_api_key": {
-      "type": "string",
-      "title": "OpenRouter API key",
-      "description": "One key for image models (Gemini, GPT Image) and video models (Seedance, Veo, Kling). openrouter.ai/keys. Leave blank if OPENROUTER_API_KEY is already in your shell.",
-      "sensitive": true
-    },
-    "gemini_api_key": {
-      "type": "string",
-      "title": "Gemini API key",
-      "description": "For narration (Gemini TTS). aistudio.google.com/apikey. Leave blank if GEMINI_API_KEY is already set.",
-      "sensitive": true
-    },
-    "elevenlabs_api_key": {
-      "type": "string",
-      "title": "ElevenLabs API key (optional, paid plan)",
-      "description": "Alternative music engine (music API needs a paid ElevenLabs plan). Music works without it via Lyria on OpenRouter. Leave blank if unused or already set as ELEVEN_API / ELEVENLABS_API_KEY.",
-      "sensitive": true
-    }
-  },
   "mcpServers": {
     "higgsfield": {
       "type": "http",

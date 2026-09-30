@@ -29,12 +29,20 @@ fi
 claude plugin marketplace add "$SOURCE"
 claude plugin install video-art@video-art
 
+# one private file for API keys, read by the terminal, the desktop app and IDEs alike
+mkdir -p "$HOME/.config/video-art" && chmod 700 "$HOME/.config/video-art"
+KEYS="$HOME/.config/video-art/.env"
+[ -f "$KEYS" ] || printf 'OPENROUTER_API_KEY=\nGEMINI_API_KEY=\nELEVENLABS_API_KEY=\n' > "$KEYS"
+chmod 600 "$KEYS"
+
 cat <<'EOF'
 
   Done. Next:
     1. Open a folder for your art:   mkdir -p ~/VideoArt && cd ~/VideoArt && claude
-    2. In Claude Code type:          /video-art:setup
-       (adds API keys, the motion-graphics engine, and makes a 5-second test video)
-    3. Then just ask, e.g.:          make a 30-second living-photo loop from ~/Pictures/iceland
+    2. Add your API keys:            open -t ~/.config/video-art/.env
+       (or let /video-art:setup do it — it can import keys already in your ~/.zshrc)
+    3. In Claude Code type:          /video-art:setup
+       (checks everything, adds the motion-graphics engine, makes a 5-second test video)
+    4. Then just ask, e.g.:          make a 30-second living-photo loop from ~/Pictures/iceland
 
 EOF
